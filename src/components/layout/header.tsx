@@ -3,6 +3,7 @@ import { StyledHeaderContainer } from './styled';
 
 export class Header extends React.Component {
   public render() {
-    return <StyledHeaderContainer>HEADER</StyledHeaderContainer>;
+    const { children } = this.props;
+    return <StyledHeaderContainer>HEADER{children}</StyledHeaderContainer>;
   }
 }
