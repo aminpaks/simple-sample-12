@@ -8,10 +8,16 @@ body {
   min-height: 100%;
 }
 @media all and (-ms-high-contrast-adjust: none) {
-  html, body {
+  html,
+  body {
     height: 100%;
-  }   
+  }
 }
 body {
   font-family: sans-serif;
+}
+#root {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
 }

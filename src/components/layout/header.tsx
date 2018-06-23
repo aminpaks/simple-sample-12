@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { StyledHeaderContainer } from './styled';
+import { StyledNavigationContainer } from './styled';
 
-export class Header extends React.Component {
-  public render() {
-    const { children } = this.props;
-    return <StyledHeaderContainer>HEADER{children}</StyledHeaderContainer>;
-  }
-}
+export const Header = ({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[];
+}) => <StyledNavigationContainer>{children}</StyledNavigationContainer>;
