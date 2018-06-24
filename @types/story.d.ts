@@ -1,4 +1,4 @@
-interface Story {
+interface IStory {
   type: 'story';
   id: number;
   by: string;
@@ -10,8 +10,11 @@ interface Story {
   url: string;
 }
 
-interface StoryListState {
-  error: ErrorState | null;
-  list: Story[];
+interface StoryState {
+  error: string | null;
+  id: number;
+  item: IStory | null;
   loading: boolean;
 }
+
+type StoryListState = StoryState[];
