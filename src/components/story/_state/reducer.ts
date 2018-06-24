@@ -1,13 +1,9 @@
 import { PlainAction } from 'redux-typed-actions';
 import { StoryLoad } from './actions';
 
-export const InitialState: StoryListState = {
-  error: null,
-  list: [],
-  loading: false,
-};
+export const InitialState: StoryListState = [];
 
-const updateItemById = (list: Story[], itemToUpdate: Story) => {
+const updateItemById = (list: StoryListState, itemToUpdate: StoryState) => {
   if (list.find(item => item.id === itemToUpdate.id)) {
     return list.reduce(
       (result, item) => [
@@ -25,26 +21,26 @@ export function reducer(
   action: PlainAction,
 ): StoryListState {
   if (StoryLoad.is(action)) {
-    return {
-      ...state,
+    return updateItemById(state, {
       error: null,
+      id: action.payload.id,
+      item: null,
       loading: true,
-    };
+    });
   } else if (StoryLoad.success.is(action)) {
-    return {
-      ...state,
-      list: updateItemById(state.list, action.payload),
+    return updateItemById(state, {
+      error: null,
+      id: action.payload.id,
+      item: action.payload,
       loading: false,
-    };
+    });
   } else if (StoryLoad.failure.is(action)) {
-    return {
-      ...state,
-      error: {
-        action: action.type,
-        message: action.payload,
-      },
+    return updateItemById(state, {
+      error: action.payload.message,
+      id: action.payload.id,
+      item: null,
       loading: false,
-    };
+    });
   }
   return state;
 }

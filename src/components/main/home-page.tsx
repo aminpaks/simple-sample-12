@@ -16,7 +16,7 @@ export const HomePage = () => (
         if (props.error) {
           return <div>Error: {props.error.message}</div>;
         }
-        return <StoryList />;
+        return <StoryList storyIds={props.list} />;
       }}
     />
   </Layout>
