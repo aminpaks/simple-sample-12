@@ -1,4 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
+import { createEpicMiddleware } from 'redux-observable';
+import { PlainAction } from 'redux-typed-actions';
+import { rootEpic } from './epic';
 import { rootReducer } from './reducer';
 
 const composeEnhancers =
@@ -8,12 +11,19 @@ const composeEnhancers =
   compose;
 
 function configureStore(initialState?: RootState) {
-  // Other middleware go here?
-  const allMiddleware: any[] = [];
+  // Epic middleware
+  const epicMiddleware = createEpicMiddleware<
+    PlainAction,
+    PlainAction,
+    RootState
+  >();
+  const allMiddleware: any[] = [epicMiddleware];
   // Compose enhancers
   const enhancer = composeEnhancers(applyMiddleware(...allMiddleware));
 
   const initialStore = createStore(rootReducer, initialState as any, enhancer);
+
+  epicMiddleware.run(rootEpic);
 
   return initialStore;
 }
