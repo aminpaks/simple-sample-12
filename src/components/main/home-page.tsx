@@ -6,7 +6,6 @@ import { FetchTopStoriesQuery as TopStoriesQuery } from '../top-stories';
 
 export const HomePage = () => (
   <Layout header={<Navigation />}>
-    <div>Home</div>
     <TopStoriesQuery
       count={30} /* Could be coming from props */
       render={props => {

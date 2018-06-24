@@ -28,7 +28,7 @@ export class Query extends React.Component<QueryProps<any> & QueryBaseProps> {
   public render() {
     const { render, children, ...props } = this.props;
     if (isFunction(render)) {
-      return render(props);
+      return render(props) || null;
     }
     return null;
   }

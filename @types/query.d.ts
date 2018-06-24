@@ -1,5 +1,5 @@
 interface QueryProps<T> {
-  render: (props: T) => JSX.Element;
+  render: (props: T) => JSX.Element | null | boolean;
 }
 
 interface QueryBaseProps {

@@ -1,6 +1,11 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { FetchStoryQuery } from './fetch';
-import { StyledStoryContainer as Container } from './styled';
+import {
+  StyledStoryContainer as Container,
+  StyledStoryDetails as Details,
+  StyledStoryTitle as Title,
+} from './styled';
 
 export const Story = ({ id }: { id: number }) => (
   <Container>
@@ -13,10 +18,20 @@ export const Story = ({ id }: { id: number }) => (
         if (props.error) {
           return <div>Error: {props.error}</div>;
         }
+        const { item } = props;
         return (
-          <div>
-            The Story NO: {id}: {JSON.stringify(props.item)}
-          </div>
+          item && (
+            <React.Fragment>
+              <Title>
+                <Link to={`story/${item.id}`}>{item.title}</Link>
+              </Title>
+              <Details>
+                <span>{item.score} score</span>
+                <span>by {item.by}</span>
+                {item.kids && <span>{item.kids.length} comments</span>}
+              </Details>
+            </React.Fragment>
+          )
         );
       }}
     />
