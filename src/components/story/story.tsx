@@ -7,7 +7,7 @@ import {
   StyledStoryTitle as Title,
 } from './styled';
 
-export const Story = ({ id }: { id: number }) => (
+export const Story = ({ id }: { id: number; loadComments?: boolean }) => (
   <Container>
     <FetchStoryQuery
       id={id}
@@ -23,12 +23,16 @@ export const Story = ({ id }: { id: number }) => (
           item && (
             <React.Fragment>
               <Title>
-                <Link to={`story/${item.id}`}>{item.title}</Link>
+                <Link to={`/story/${item.id}`}>{item.title}</Link>
               </Title>
               <Details>
                 <span>{item.score} score</span>
                 <span>by {item.by}</span>
-                {item.kids && <span>{item.kids.length} comments</span>}
+                {item.kids ? (
+                  <span>{item.kids.length} comments</span>
+                ) : (
+                  <span>no comments!</span>
+                )}
               </Details>
             </React.Fragment>
           )
