@@ -14,10 +14,20 @@ body {
   }
 }
 body {
+  color: #000;
+  background-color: #fff;
   font-family: sans-serif;
 }
 #root {
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
+}
+a {
+  color: #207f66;
+  text-decoration: none;
+}
+a:hover {
+  color: #25b78b;
+  text-decoration: underline;
 }

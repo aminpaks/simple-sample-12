@@ -1,6 +1,12 @@
 import * as React from 'react';
-import { StyledCommentContainer as Container } from './styled';
+import {
+  StyledCommentContainer as Container,
+  StyledCommentText as Text,
+} from './styled';
 
 export const Comment = ({ comment }: { comment: IComment }) => (
-  <Container>Comment::{comment.id}</Container>
+  <Container>
+    <div>{comment.by} says:</div>
+    <Text dangerouslySetInnerHTML={{ __html: comment.text }} />
+  </Container>
 );
