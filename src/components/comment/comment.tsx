@@ -1,3 +1,6 @@
 import * as React from 'react';
+import { StyledCommentContainer as Container } from './styled';
 
-export const Comment = ({ id }: { id: number }) => <div>Comment::{id}</div>;
+export const Comment = ({ comment }: { comment: IComment }) => (
+  <Container>Comment::{comment.id}</Container>
+);

@@ -1,19 +1,36 @@
 import * as React from 'react';
-import { Comment } from './comment';
+import { Commenter } from './commenter';
+import { FetchCommentQuery } from './fetch';
+import {
+  StyledCommenterContainer as CommentContainer,
+  StyledCommentListContainer as Container,
+} from './styled';
 
-export const CommentList = ({
+export const CommenterList = ({
   commentIds,
   count = 30,
 }: {
   commentIds: number[];
-  count: number;
+  count?: number;
   loadComments?: boolean;
-}) => (
-  <div>
-    Comment List:{' '}
-    {commentIds &&
-      commentIds
-        .slice(0, count)
-        .map(commentId => <Comment key={String(commentId)} id={commentId} />)}
-  </div>
-);
+}) =>
+  commentIds && (
+    <Container>
+      <span>Top commenters: </span>
+      {commentIds.slice(0, count).map(commentId => (
+        <FetchCommentQuery
+          key={String(commentId)}
+          id={commentId}
+          render={props => {
+            if (props.loading) {
+              return <CommentContainer>Loading...</CommentContainer>;
+            }
+            if (props.error) {
+              return <CommentContainer>Error: {props.error}</CommentContainer>;
+            }
+            return props.item && <Commenter comment={props.item} />;
+          }}
+        />
+      ))}
+    </Container>
+  );

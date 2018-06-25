@@ -2,7 +2,7 @@ import * as React from 'react';
 import { match } from 'react-router-dom';
 import { Navigation } from '../common';
 import { Layout } from '../layout';
-import { Story } from '../story';
+import { StoryFull } from '../story';
 
 export class StoryPage extends React.Component<{
   match: match<{ id: string }>;
@@ -12,7 +12,7 @@ export class StoryPage extends React.Component<{
     const storyId = parseInt(id, 10);
     return (
       <Layout header={<Navigation />}>
-        <Story id={storyId} loadComments={true} />
+        <StoryFull id={storyId} loadComments={true} />
       </Layout>
     );
   }

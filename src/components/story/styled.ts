@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const StyledStoryCardContainer = styled.main`
+  display: block;
+`;
+
 export const StyledStoryListContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,11 +28,12 @@ export const StyledStoryContainer = styled.section`
   }
 `;
 
-export const StyledStoryTitle = styled.h4`
+export const StyledStoryCardTitle = styled.h4`
   margin-top: 0;
 `;
 
-export const StyledStoryDetails = styled.div`
+export const StyledStoryCardDetails = styled.aside`
+  display: block;
   span {
     &:not(:last-of-type) {
       margin-right: 0.4em;

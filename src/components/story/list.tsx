@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Story } from './story';
+import { StoryPreview } from './story-preview';
 import {
   StyledStoryListBody as Body,
   StyledStoryListContainer as Container,
@@ -13,7 +13,7 @@ export class StoryList extends React.Component<{ storyIds: number[] }> {
       <Container>
         <Header>Top Stories</Header>
         <Body>
-          {storyIds.map(storyId => <Story key={storyId} id={storyId} />)}
+          {storyIds.map(storyId => <StoryPreview key={storyId} id={storyId} />)}
         </Body>
       </Container>
     );
